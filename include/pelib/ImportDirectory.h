@@ -798,12 +798,14 @@ namespace PeLib
 			dword dwPdll = uiSizeofdescriptors + uiSizeofoft + uiImprva + dllsize;
 			obBuffer << (fixEntries ? dwPdll : m_vNewiid[i].impdesc.Name);
 			obBuffer << m_vNewiid[i].impdesc.FirstThunk;
+			obBuffer << (fixEntries ? dwPoft : m_vNewiid[i].impdesc.FirstThunk);
 
 			// store the recalculated values
 			if (fixEntries)
 			{
 				m_vNewiid[i].impdesc.OriginalFirstThunk = dwPoft;
 				m_vNewiid[i].impdesc.Name = dwPdll;
+				m_vNewiid[i].impdesc.FirstThunk = dwPoft;
 			}
 
 			dllsize += static_cast<unsigned int>(m_vNewiid[i].name.size()) + 1;
