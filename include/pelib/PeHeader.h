@@ -873,7 +873,13 @@ namespace PeLib
 		setSizeOfHeaders(dwSizeOfHeaders);
 
 		dword dwSizeOfImage = alignOffset(dwSizeOfHeaders, getSectionAlignment());
-
+    dword firstPointerToRawData = 0;
+    for (int i = 0; i < this->calcNumberOfSections(); i++) {
+      if (this->getSizeOfRawData(i) > 0) {
+        firstPointerToRawData = this->getPointerToRawData(i);
+        break;
+      }
+    }
 		dword dwOffsetDiff = dwSizeOfHeaders - getPointerToRawData(0);
 		for (int i=0;i<calcNumberOfSections();i++)
 		{
