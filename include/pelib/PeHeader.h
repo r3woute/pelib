@@ -1418,6 +1418,7 @@ namespace PeLib
 		for (unsigned int i=0;i<nrSections;i++)
 		{
 			char temp[9] = {0};
+			memset(temp, 0, 9);
 			strcpy(temp, getSectionName(i).c_str());
 			obBuffer.add(temp, 8);
 			obBuffer << m_vIsh[i].VirtualSize;
