@@ -881,6 +881,17 @@ namespace PeLib
       }
     }
 		dword dwOffsetDiff = dwSizeOfHeaders - getPointerToRawData(0);
+=======
+		dword firstPointerToRawData = 0;
+		for (int i = 0; i < this->calcNumberOfSections(); i++) {
+			if (this->getSizeOfRawData(i) > 0) {
+				firstPointerToRawData = this->getPointerToRawData(i);
+				break;
+			}
+		}
+
+		dword dwOffsetDiff = dwSizeOfHeaders - firstPointerToRawData;
+>>>>>>> 2b00d4e91907978483f9344a19ef7568468cf00f
 		for (int i=0;i<calcNumberOfSections();i++)
 		{
 			dwSizeOfImage += alignOffset(getVirtualSize(i), getSectionAlignment());
@@ -1424,7 +1435,11 @@ namespace PeLib
 		for (unsigned int i=0;i<nrSections;i++)
 		{
 			char temp[9] = {0};
+<<<<<<< HEAD
       memset(temp, 0, 9);
+=======
+			memset(temp, 0, 9);
+>>>>>>> 2b00d4e91907978483f9344a19ef7568468cf00f
 			strcpy(temp, getSectionName(i).c_str());
 			obBuffer.add(temp, 8);
 			obBuffer << m_vIsh[i].VirtualSize;
